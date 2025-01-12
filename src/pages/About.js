@@ -18,14 +18,12 @@ function About() {
             <div className="col-lg-5">
               <div className="intro-excerpt">
                 <h1>About Us</h1>
-                <p className="mb-4">Welcome to [Interior], where we specialize in creating beautiful, functional interiors that reflect your unique style and enhance your living spaces. With a passion for design and a commitment to excellence, we bring years of experience and creativity to every project.</p>
+                <p>We will tell to something about us so u can know about us clearly</p>
                 <p><Link to="/shop" className="btn btn-secondary me-2">Shop Now</Link><a href="#" className="btn btn-white-outline">Explore</a></p>
               </div>
             </div>
             <div className="col-lg-7">
-              <div className="hero-img-wrap">
-                <img src="/assets/images/couch.png" className="img-fluid" />
-              </div>
+              
             </div>
           </div>
         </div>
@@ -83,9 +81,7 @@ function About() {
           </div>
 
           <div className="col-lg-5">
-            <div className="img-wrap">
-              <img src="/assets/images/why-choose-us-img.jpg" alt="Image" className="img-fluid"/>
-            </div>
+            
           </div>
 
         </div>

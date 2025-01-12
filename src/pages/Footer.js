@@ -7,9 +7,7 @@ const Footer = () => {
         <footer className="footer-section">
         <div className="container relative">
 
-            <div className="sofa-img">
-                <img src="/assets/images/sofa.png" alt="Image" className="img-fluid" />
-            </div>
+            
 
             <div className="row">
                 <div className="col-lg-8">
@@ -36,7 +34,7 @@ const Footer = () => {
 
             <div className="row g-5 mb-5">
                 <div className="col-lg-4">
-                    <div className="mb-4 footer-logo-wrap"><a href="#" className="footer-logo">Home Interior</a></div>
+                    <div className="mb-4 footer-logo-wrap"><a href="#" className="footer-logo">Men's Categories</a></div>
                     <p className="mb-4">Modern interior design creates environments that are not only visually appealing but also functional and comfortable. Its focus on simplicity, quality materials, and thoughtful design makes it a popular choice for contemporary living spaces.</p>
 
                     <ul className="list-unstyled custom-social">
@@ -52,8 +50,6 @@ const Footer = () => {
                         <div className="col-6 col-sm-6 col-md-3">
                             <ul className="list-unstyled">
                                 <li><Link to="/about">About us</Link></li>
-                                <li><Link to="/service">Services</Link></li>
-                                <li><Link to="/blog">Blog</Link></li>
                                 <li><Link to="/contact">Contact us</Link></li>
                             </ul>
                         </div>

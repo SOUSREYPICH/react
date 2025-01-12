@@ -18,8 +18,7 @@ function Menu() {
                     </li>
                     <li ><Link class="nav-link" to="/shop">Shop</Link></li>
 					<li><Link class="nav-link" to="/about">About us</Link></li>
-					<li><Link class="nav-link" to="/service">Services</Link></li>
-					<li><Link class="nav-link" to="/blog">Blog</Link></li>
+					
 					<li><Link class="nav-link" to="/contact">Contact us</Link></li>
                 </ul>
 

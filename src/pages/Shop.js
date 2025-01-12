@@ -1,18 +1,52 @@
-import React, { Fragment } from 'react'
-import Menu from './Menu'
-import Footer from './Footer'
-import Cart from './Cart'
-import { Link } from "react-router-dom";
-import Product from './Product';
-
+import React, { Fragment, useEffect, useState } from 'react';
+import Menu from './Menu';
+import Footer from './Footer';
+import { Link, useNavigate } from "react-router-dom";
 
 function Shop() {
+  const [products, setProducts] = useState([]);
+  const [error, setError] = useState(null);
+  const [cartItems, setCartItems] = useState([]); // Cart state
+  const navigate = useNavigate(); // To programmatically navigate
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('https://fakestoreapi.com/products/');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setProducts(data.slice(0, 8)); // Limit to 8 products
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  // Function to add product to the cart
+  const addToCart = (product) => {
+    setCartItems((prevItems) => {
+      const existingItem = prevItems.find(item => item.id === product.id);
+      if (existingItem) {
+        return prevItems.map(item =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      }
+      return [...prevItems, { ...product, quantity: 1 }];
+    });
+
+    navigate('/cart'); // Navigate to the Cart page
+  };
+
   return (
     <Fragment>
-      <nav className="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
-
-        <Menu/>
-  
+      <nav className="custom-navbar navbar navbar-expand-md navbar-dark bg-dark" aria-label="Furni navigation bar">
+        <Menu />
       </nav>
 
       <div className="hero">
@@ -23,124 +57,49 @@ function Shop() {
                 <h1>Shop</h1>
               </div>
             </div>
-            <div className="col-lg-7">
-              
-            </div>
           </div>
         </div>
       </div>
-      
 
       <div className="untree_co-section product-section before-footer-section">
         <div className="container">
-            <div className="row">
-              <div className="col-12 col-md-4 col-lg-3 mb-5">
-                <Link className="product-item" to="/cart">
-                  <img src="/assets/images/product-3.png" className="img-fluid product-thumbnail" alt="Product" />
-                  <h3 className="product-title">Nordic Chair</h3>
-                  <strong className="product-price">$50.00</strong>
-
-                  <span className="icon-cross">
-                    <img src="/assets/images/cross.svg" className="img-fluid" alt="Remove item" />
-                  </span>
-                </Link>
-              </div> 
-              <div className="col-12 col-md-4 col-lg-3 mb-5">
-                <Link className="product-item" to="/cart">
-                  <img src="/assets/images/product-1.png" className="img-fluid product-thumbnail" alt="Product" />
-                  <h3 className="product-title">Nordic Chair</h3>
-                  <strong className="product-price">$50.00</strong>
-
-                  <span className="icon-cross">
-                    <img src="/assets/images/cross.svg" className="img-fluid" alt="Remove item" />
-                  </span>
-                </Link>
-              </div> 
-              
-              <div className="col-12 col-md-4 col-lg-3 mb-5">
-                <Link className="product-item" to="/cart">
-                  <img src="/assets/images/product-2.png" className="img-fluid product-thumbnail" alt="Product" />
-                  <h3 className="product-title">Kruzo Aero Chair</h3>
-                  <strong className="product-price">$78.00</strong>
-
-                  <span className="icon-cross">
-                    <img src="/assets/images/cross.svg" className="img-fluid" alt="Remove item" />
-                  </span>
-                </Link>
-              </div>
-              
-              <div className="col-12 col-md-4 col-lg-3 mb-5">
-                <Link className="product-item" to="/cart">
-                  <img src="/assets/images/product-3.png" className="img-fluid product-thumbnail" alt="Product" />
-                  <h3 className="product-title">Ergonomic Chair</h3>
-                  <strong className="product-price">$43.00</strong>
-
-                  <span className="icon-cross">
-                    <img src="/assets/images/cross.svg" className="img-fluid" alt="Remove item" />
-                  </span>
-                </Link>
-              </div>
-              
-              <div className="col-12 col-md-4 col-lg-3 mb-5">
-                <Link className="product-item" to="/cart">
-                  <img src="/assets/images/product-3.png" className="img-fluid product-thumbnail" alt="Product" />
-                  <h3 className="product-title">Nordic Chair</h3>
-                  <strong className="product-price">$50.00</strong>
-
-                  <span className="icon-cross">
-                    <img src="/assets/images/cross.svg" className="img-fluid" alt="Remove item" />
-                  </span>
-                </Link>
-              </div> 
-              
-              <div className="col-12 col-md-4 col-lg-3 mb-5">
-                <Link className="product-item" to="/cart">
-                  <img src="/assets/images/product-1.png" className="img-fluid product-thumbnail" alt="Product" />
-                  <h3 className="product-title">Nordic Chair</h3>
-                  <strong className="product-price">$50.00</strong>
-
-                  <span className="icon-cross">
-                    <img src="/assets/images/cross.svg" className="img-fluid" alt="Remove item" />
-                  </span>
-                </Link>
-              </div> 
-              
-              <div className="col-12 col-md-4 col-lg-3 mb-5">
-                <Link className="product-item" to="/cart">
-                  <img src="/assets/images/product-2.png" className="img-fluid product-thumbnail" alt="Product" />
-                  <h3 className="product-title">Kruzo Aero Chair</h3>
-                  <strong className="product-price">$78.00</strong>
-
-                  <span className="icon-cross">
-                    <img src="/assets/images/cross.svg" className="img-fluid" alt="Remove item" />
-                  </span>
-                </Link>
-              </div>
-              
-              <div className="col-12 col-md-4 col-lg-3 mb-5">
-                <Link className="product-item" to="/cart">
-                <img src="/assets/images/product-3.png" className="img-fluid product-thumbnail" alt="Product" />
-                  <h3 className="product-title">Ergonomic Chair</h3>
-                  <strong className="product-price">$43.00</strong>
-
-                  <span className="icon-cross">
-                    <img src="/assets/images/cross.svg" className="img-fluid" alt="Remove item" />
-                  </span>
-                </Link>
-              </div>
-              
-
-            </div>
+          <div className="row">
+            {error && <p className="text-danger">Error fetching products: {error}</p>}
+            {!error && products.length > 0 ? (
+              products.map((product) => (
+                <div className="col-12 col-md-6 col-lg-3 mb-4" key={product.id}>
+                  <div className="card h-100 shadow-sm">
+                    <div className="product-item" onClick={() => addToCart(product)}> {/* Handle click for adding to cart */}
+                      <img
+                        src={product.image}
+                        className="card-img-top"
+                        alt={product.title}
+                        style={{ maxHeight: '200px', objectFit: 'contain' }}
+                      />
+                      <div className="card-body">
+                        <h3 className="product-title" style={{ fontSize: '1rem', margin: '0.5rem 0' }}>{product.title}</h3>
+                        <strong className="product-price">${product.price.toFixed(2)}</strong>
+                      </div>
+                      <div className="icon-cross text-center mb-2">
+                        <img src="/assets/images/cross.svg" className="img-fluid" alt="Remove item" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <p>Loading products...</p>
+            )}
+          </div>
         </div>
       </div>
-      
-      <Footer/>
+
+      <Footer />
       <script src="js/bootstrap.bundle.min.js"></script>
       <script src="js/tiny-slider.js"></script>
       <script src="js/custom.js"></script>
-
     </Fragment>
-  )
+  );
 }
 
-export default Shop
+export default Shop;
